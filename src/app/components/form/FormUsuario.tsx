@@ -37,21 +37,20 @@ export default function FormUsuario() {
 
   // Função para cadastrar o usuário
   async function CadastrarUsuario(data: UsuarioFormData) {
-  debugger;
-	setIsLoading(true);
-	
+    setIsLoading(true); // Iniciar o estado de carregamento
+  
     try {
-      
-	  const usuarionovo= PostUsuario(data)
-
-      console.log("Usuário criado com sucesso:" + usuarionovo);
-      reset(); // Resetando o formulário após sucesso
+      await PostUsuario(data); // Esperar pela resolução da Promise de PostUsuario
+  
+      console.log("Usuário criado com sucesso.");
+      reset(); // Resetar o formulário após sucesso
     } catch (error) {
       console.error("Erro ao cadastrar o usuário:", error);
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Garantir que o estado de carregamento seja atualizado
     }
   }
+  
 
   return (
     <div className="flex flex-col justify-center max-w-md mx-auto ">
